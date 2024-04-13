@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            flex: 1 1 calc(20% - 20px);
+            max-width: calc(20% - 20px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card p {
+            margin-bottom: 5px;
+        }
+
+        .buy-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 50%;
+            transition: background-color 0.3s;
+            margin-top: 50%;
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+
+        .sell-button {
+            background-color: #218e09;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+            /* Added margin to separate from cards */
+            transition: background-color 0.3s;
+            align-items: center;
+        }
+
+        .sell-button:hover {
+            background-color: #32a508;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>List of Food </h1>
+    <!-- <button class="sell-button" onClick="handleSellClick()">Sell Food</button> -->
+    <a href="/buy-form" class="buy-button">Sell Food</a>
+    <!-- Common Sell button -->
+    <% if (data.length===0) { %>
+        <p>No data available.</p>
+        <% } else { %>
+            <div class="container">
+                <% data.forEach(function(item) { %>
+                    <div class="card">
+                        <h4>Seller Name: <%= item.name %>
+                        </h4>
+                        <p>Food: <%= item.food %>
+                        </p>
+                        <p>Quantity: <%= item.quantity %>
+                        </p>
+                        <p>Price per kg: ₹<%= typeof item.price_per_kg==='number' ? item.price_per_kg.toFixed(2) :
+                                item.price_per_kg %>
+                        </p>
+                        <p>Contact: <%= item.contact %>
+                        </p>
+                        <!-- <button class="buy-button" onClick="handleBuyClick()">Buy</button> -->
+                        <br>
+                        <a href="/final_buy" class="buy-button">Buy</a>
+                    </div>
+                    <% }); %>
+            </div>
+            <% } %>
+</body>
+
+</html>
